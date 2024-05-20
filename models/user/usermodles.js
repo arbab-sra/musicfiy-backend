@@ -1,39 +1,62 @@
 import mongoose from "mongoose";
-const userSchema = mongoose.Schema(
+
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      requred: true,
+      required: [true, 'Username is required'],
       unique: true,
     },
     email: {
       type: String,
-      requrid: true,
+      required: [true, 'Email is required'],
+      unique: true,
     },
     password: {
       type: String,
+      required: true,
     },
-    profilepicture: {
-      type: String,
-      default: "",
-    },
-
-    like: [
+    likedSongs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: Song,
-      },
+        ref: 'Song',
+      }
+    ],
+    watchlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Song',
+      }
     ],
     history: [
       {
-        type: mongoose.Schema.types.ObjectId,
-        ref: Song,
-      },
+        song: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Song',
+        },
+        playedAt: {
+          type: Date,
+          default: Date.now,
+        }
+      }
     ],
-    mostplayedsong: {
-      type: Array,
-    },
+    mostPlayedSongs: [
+      {
+        song: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Song',
+        },
+        playCount: {
+          type: Number,
+          default: 0,
+        }
+      }
+    ],
   },
-
-  { timestap: true }
+  {
+    timestamps: true,
+  }
 );
+
+const User = mongoose.model("User", userSchema);
+export { User };

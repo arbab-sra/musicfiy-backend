@@ -1,8 +1,19 @@
 import multer from "multer";
-export const uploadfile = multer.diskStorage({
+import path from "path";
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../public");
+    cb(null, path.resolve("public"));
   },
 
-  destination: function (req, file, cb) {},
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(
+      null,
+      file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
+    );
+  },
 });
+export const upload = multer({ storage }).fields([
+  { name: "avatar", maxCount: 1 },
+  { name: "song", maxCount: 1 },
+]);

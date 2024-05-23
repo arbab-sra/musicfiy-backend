@@ -1,5 +1,8 @@
-const profileControler=(req, res)=>{
-    return res.send ("form profileControler")
-    
-}
+const profileControler = (req, res) => {
+  const userprofile = req.user;
+  if (userprofile) {
+    return res.send(userprofile);
+  }
+};
 export default profileControler;
+ 

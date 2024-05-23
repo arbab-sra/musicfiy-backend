@@ -4,53 +4,57 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: [true, 'Username is required'],
-      unique: true,
+      required: [true, "Username is required"],
+      
     },
     email: {
       type: String,
-      required: [true, 'Email is required'],
+      required: [true, "Email is required"],
       unique: true,
     },
     password: {
       type: String,
-      required: true,
+      required: [true , "Password is required"],
+    },
+    profilepicture: {
+      type: String,
+      default: "https://avatar.iran.liara.run/public",
     },
     likedSongs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Song',
-      }
+        ref: "Song",
+      },
     ],
     watchlist: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Song',
-      }
+        ref: "Song",
+      },
     ],
     history: [
       {
         song: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'Song',
+          ref: "Song",
         },
         playedAt: {
           type: Date,
           default: Date.now,
-        }
-      }
+        },
+      },
     ],
     mostPlayedSongs: [
       {
         song: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'Song',
+          ref: "Song",
         },
         playCount: {
           type: Number,
           default: 0,
-        }
-      }
+        },
+      },
     ],
   },
   {
@@ -58,5 +62,5 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", userSchema);
-export { User };
+export const User = mongoose.model("User", userSchema);
+// export { User };

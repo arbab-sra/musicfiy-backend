@@ -4,10 +4,11 @@ dotenv.config();
 import express from "express";
 import path from "path"
 import colors from "colors";
-import { loginRoute, profileRoute, signupRoute } from "./routes/user/index.js";
+import { loginRoute, profileRoute, signupRoute,updateprofileRoute } from "./routes/user/index.js";
 import connectdb from "./utils/connectdb.js";
 import { genratToken } from "./utils/jwtsigntoken.js";
 import cookieParser from "cookie-parser";
+
 //middleware
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -25,10 +26,12 @@ app.get("/", (req, res) => {
   console.log(token);
   res.send(token);
 });
-
+//all users routes
 app.use("/api", loginRoute);
 app.use("/api", signupRoute);
 app.use("/api", profileRoute);
+app.use("/api",updateprofileRoute);
+
 
 app.listen(port, () => {
   console.log(`server is running url = ${process.env.SERVER_URL}${port}`.gray.america);

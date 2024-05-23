@@ -16,6 +16,10 @@ const songSchema = new mongoose.Schema(
     songCategory: {
       type: String,
     },
+    themnail: {
+      type: String,
+      required: [true, "The theme is required"]
+    },
     url: {
       type: String,
       required: [true, "URL is required"],

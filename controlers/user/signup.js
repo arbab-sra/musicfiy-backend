@@ -2,17 +2,11 @@ import { User } from "../../models/user/usermodles.js";
 import bcrypt from "bcrypt";
 import { genratToken } from "../../utils/jwtsigntoken.js";
 import { uploadToCloudinary } from "../../utils/uplodtocloudnery.js";
-import path from "path";
-import { fileURLToPath } from "url";
-
-// Define __dirname
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const signupControler = async (req, res) => {
   const { username, email, password } = req.body;
   const imgurlfromclint =
-    req.files && req.files.avatar[0] && req.files.avatar[0].filename;
+    req.files && req.files.avatar[0] && req.files.avatar[0].path;
   if (!(email && password && username)) {
     return res.status(499).json({
       messsage: "All files must be required",
@@ -37,8 +31,7 @@ const signupControler = async (req, res) => {
   };
   console.log(imgurlfromclint);
   if (req.files) {
-    const filePath = path.resolve(__dirname, "../../public", imgurlfromclint );
-    const url = await uploadToCloudinary(filePath ,"profilepicture");
+    const url = await uploadToCloudinary(imgurlfromclint, "profilepicture" , );
     if (url) {
       userdetails.profilepicture = url;
     }

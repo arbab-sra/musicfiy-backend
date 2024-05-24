@@ -16,4 +16,5 @@ const storage = multer.diskStorage({
 export const upload = multer({ storage }).fields([
   { name: "avatar", maxCount: 1 },
   { name: "song", maxCount: 1 },
+  { name: "themnail", maxCount: 1 },
 ]);

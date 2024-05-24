@@ -2,10 +2,13 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
+    isadmin: {
+      type: Boolean,
+      default: false,
+    },
     username: {
       type: String,
       required: [true, "Username is required"],
-      
     },
     email: {
       type: String,
@@ -14,7 +17,7 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true , "Password is required"],
+      required: [true, "Password is required"],
     },
     profilepicture: {
       type: String,
@@ -26,7 +29,7 @@ const userSchema = new mongoose.Schema(
         ref: "Song",
       },
     ],
-    watchlist: [
+    recentlist: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Song",
@@ -54,6 +57,17 @@ const userSchema = new mongoose.Schema(
           type: Number,
           default: 0,
         },
+      },
+    ],
+    playlists: [
+      {
+        name: { type: String },
+        songs: [
+          {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Song",
+          },
+        ],
       },
     ],
   },

@@ -1,6 +1,7 @@
 import cloud from "cloudinary";
 import path from "path";
 import fs from "fs";
+import { deleteFile } from "./deletefiles.js";
 const cloudinary = cloud.v2;
 
 cloudinary.config({
@@ -9,7 +10,7 @@ cloudinary.config({
   api_secret: "78iP7_cKi-kiojXifdv0XfK_wF8",
 });
 
-export const uploadToCloudinary = async (filename ,folderName) => {
+export const uploadToCloudinary = async (filename, folderName,contanttyp ="auto") => {
   // console.log("resive image pathe",filename);
   try {
     const filePath = path.resolve("../public", filename);
@@ -17,7 +18,7 @@ export const uploadToCloudinary = async (filename ,folderName) => {
     const response = await cloudinary.uploader.upload(
       filePath,
       {
-        resource_type: "auto", // For audio files
+        resource_type: contanttyp, // For audio files
         folder: folderName,
       },
       (error) => {
@@ -25,12 +26,9 @@ export const uploadToCloudinary = async (filename ,folderName) => {
           console.log(error.message);
         } else {
           // Delete the file from the server after uploading to Cloudinary
-          fs.unlinkSync(filePath, function (err) {
-            if (err) {
-              console.log(err.message);
-            }
-            console.log("profilepicture uploaded successfully");
-          });
+
+          deleteFile(filePath);
+          console.log("profilepicture uploaded successfully");
         }
       }
     );

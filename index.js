@@ -13,7 +13,17 @@ import {
 } from "./routes/user/index.js";
 import connectdb from "./utils/connectdb.js";
 import cookieParser from "cookie-parser";
-import {create_songRoute} from "./routes/admin/song/index.js";
+import { create_songRoute } from "./routes/admin/song/index.js";
+import {
+  all_songsControlar,
+  mood_playlistRoute,
+  new_release_songRoute,
+  popular_songsRoute,
+  top_albumRoute,
+  top_artiestsRoute,
+  weekly_top_songsRoute,
+} from "./routes/song/index.js";
+import tranding_songsRoute from "./routes/song/trandingRoute.js";
 
 //middleware
 const app = express();
@@ -39,6 +49,15 @@ app.use("/api", logoutRoute);
 //all admin routes
 app.use("/api", create_songRoute);
 
+// songs route
+app.use("/api", all_songsControlar);
+app.use("/api", mood_playlistRoute);
+app.use("/api", new_release_songRoute);
+app.use("/api", popular_songsRoute);
+app.use("/api", top_albumRoute);
+app.use("/api", top_artiestsRoute);
+app.use("/api", tranding_songsRoute);
+app.use("/api", weekly_top_songsRoute);
 
 app.listen(port, () => {
   console.log(

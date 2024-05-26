@@ -19,6 +19,8 @@ import {
   mood_playlistRoute,
   new_release_songRoute,
   popular_songsRoute,
+  singlesongRoute,
+  songbysearchRoute,
   top_albumRoute,
   top_artiestsRoute,
   weekly_top_songsRoute,
@@ -58,6 +60,8 @@ app.use("/api", top_albumRoute);
 app.use("/api", top_artiestsRoute);
 app.use("/api", tranding_songsRoute);
 app.use("/api", weekly_top_songsRoute);
+app.use("/api", songbysearchRoute);
+app.use("/api", singlesongRoute);
 
 app.listen(port, () => {
   console.log(

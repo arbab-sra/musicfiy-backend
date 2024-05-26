@@ -3,6 +3,11 @@ const profileControler = (req, res) => {
   if (userprofile) {
     return res.send(userprofile);
   }
+  try {
+    
+  } catch (error) {
+    return console.log(error.message);
+  }
 };
 export default profileControler;
  

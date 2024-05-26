@@ -6,3 +6,5 @@ export { default as top_albumRoute } from "./topAlbumRoute.js";
 export { default as top_artiestsRoute } from "./topArtiestRoute.js";
 export { default as tranding_songs } from "./trandingRoute.js";
 export { default as weekly_top_songsRoute } from "./weeklyTopSong.js";
+export { default as songbysearchRoute } from "./searchSongRoute.js";
+export { default as singlesongRoute } from "./singleSongRoute.js";

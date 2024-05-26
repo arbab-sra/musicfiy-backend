@@ -56,7 +56,7 @@ const create_song = async (req, res) => {
     await newsong.save();
     return res.status(200).send("song created successfully");
   } catch (error) {
-    console.log(error.message);
+    return console.log(error.message);
   }
 };
 

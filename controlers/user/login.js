@@ -17,6 +17,8 @@ const loginControler = async (req, res) => {
     }
     const token = genratToken(userIsExist._id);
     return res.cookie("token", token).json({ message: "Login Successfully" });
-  } catch (error) {}
+  } catch (error) {
+    return console.log(error.message);
+  }
 };
 export default loginControler;

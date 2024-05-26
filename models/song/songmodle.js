@@ -9,6 +9,7 @@ const songSchema = new mongoose.Schema(
     },
     description: {
       type: String,
+      default: "",
     },
     artist: {
       type: String,

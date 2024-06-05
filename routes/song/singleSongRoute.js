@@ -4,7 +4,7 @@ import { singlesongControllar } from "../../controlers/song/index.js";
 const router = express.Router();
 const singlesongRoute = router.get(
   "/songs/singlesong",
-  verifyToken,
+  // verifyToken,
   singlesongControllar
 );
 export default singlesongRoute;

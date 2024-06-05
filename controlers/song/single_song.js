@@ -3,18 +3,20 @@ const singlesongControllar = async (req, res) => {
   const { id } = req.query;
   if (!id) return res.send("id is required");
 
+  console.log("first");
   try {
-    const { views } = await Song.findById({ _id: id });
-    const song = await Song.findByIdAndUpdate(
+    const result = await Song.findByIdAndUpdate(
       { _id: id },
-      { views: views + 1 }
+      { $inc: { views: 1 } },
+      { new: true }
     );
-    if (!song) return res.send("Song not found in database from  this song id");
 
-    return res.send(song);
+    // Fetch the updated song
+
+    return res.status(200).send(result);
   } catch (error) {
-    console.log(+error.message);
-    return res.send(error.message);
+    console.error(error.message);
+    return res.status(500).send(error.message);
   }
 };
 export default singlesongControllar;

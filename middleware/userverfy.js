@@ -1,19 +1,33 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/user/usermodles.js";
 export const verifyToken = async (req, res, next) => {
-  const token = req.cookies?.token;
+  // console.log(req);
+  if (!req.headers?.authorization) {
+    return res.status(401).json({
+      message: "Invalid token login ",
+    });
+  }
+  const token = req.headers?.authorization.toString();
+
   if (!token) {
     return res.status(401).json({
       message: "Invalid token login ",
     });
   }
-  const { id } = jwt.verify(token, process.env.TWT_TOKEN_KEY);
+  try {
+    const { id } = jwt.verify(token, process.env.TWT_TOKEN_KEY);
 
-  if (id) {
-    const user = await User.findById({ _id: id });
-    if (user) {
-      req.user = user;
+    if (id) {
+      const user = await User.findById(id);
+      if (user) {
+        req.user = user;
+      }
     }
-  }
-  next();
+    next();
+  } catch (error) {
+    console.log(error.message);
+
+    return res.status(401).json({
+      message: "Invalid token login ",
+  })}
 };

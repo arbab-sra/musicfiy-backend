@@ -40,7 +40,7 @@ connectdb();
 const port = process.env.PORT || 8080;
 // all routes
 const corsOptions = {
-  origin: 'http://localhost:5173', // your frontend URL
+  origin: process.env.FRONTEND_URL||'http://localhost:5173', // your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
@@ -79,6 +79,6 @@ app.use("/api", singlesongRoute);
 
 app.listen(port, () => {
   console.log(
-    `server is running url = ${process.env.SERVER_URL}${port}`.gray.america
+    `server is running on port ${port}`.gray.america
   );
 });

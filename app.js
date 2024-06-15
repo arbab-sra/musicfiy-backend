@@ -40,14 +40,14 @@ connectdb();
 const port = process.env.PORT || 8080;
 // all routes
 const corsOptions = {
-  origin: process.env.FRONTEND_URL||'http://localhost:5173', // your frontend URL
+  origin: 'http://localhost:5173', // your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
 };
 
-// app.use(cors(corsOptions));
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors(corsOptions));
+// app.use(cors({ origin: "http://localhost:5173" }));
 app.get("/", (req, res) => {
   return res.send("hello world");
 });

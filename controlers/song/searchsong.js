@@ -4,7 +4,7 @@ const songBySearchingControllar = async (req, res) => {
     // Extract the search query from request parameters
     const { query } = req.query;
 
-    // console.log(query);
+    console.log(query);
     // Validate the query
     if (!query) {
       return res.status(400).json({ message: "Query parameter is required" });

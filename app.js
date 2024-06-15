@@ -46,8 +46,8 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-app.use(cors(corsOptions));
-// app.use(cors({ origin: "http://localhost:5173" }));
+// app.use(cors(corsOptions));
+app.use(cors({ origin: "http://localhost:5173" }));
 app.get("/", (req, res) => {
   return res.send("hello world");
 });

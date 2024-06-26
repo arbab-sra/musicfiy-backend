@@ -34,20 +34,20 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.resolve("public")));
-app.use(cookieParser( ));
+app.use(cookieParser());
 //configure
 connectdb();
 const port = process.env.PORT || 8080;
 // all routes
-const corsOptions = {
-  origin: process.env.FRONTEND_URL ||'http://localhost:5173', // your frontend URL
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
+// const corsOptions = {
+//   origin: process.env.FRONTEND_URL ||'http://localhost:5173', // your frontend URL
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true,
+//   optionsSuccessStatus: 204,
+// };
 
-app.use(cors(corsOptions));
-// app.use(cors({ origin: "http://localhost:5173" }));
+// app.use(cors(corsOptions));
+app.use(cors({ origin: "*" }));
 app.get("/", (req, res) => {
   return res.send("hello world");
 });
@@ -58,7 +58,6 @@ app.use("/api", profileRoute);
 app.use("/api", updateprofileRoute);
 app.use("/api", logoutRoute);
 //cors
-
 
 // app.use(cors( { origin: "http://localhost:5173" } ));
 
@@ -78,7 +77,5 @@ app.use("/api", songbysearchRoute);
 app.use("/api", singlesongRoute);
 
 app.listen(port, () => {
-  console.log(
-    `server is running on port ${port}`.gray.america
-  );
+  console.log(`server is running on port ${port}`.gray.america);
 });

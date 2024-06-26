@@ -15,7 +15,7 @@ const signupControler = async (req, res) => {
   try {
     const userisExist = await User.findOne({ email });
     if (userisExist) {
-      return res.status(200).json({
+      return res.status(403).json({
         messsage: "User already exists",
       });
     }
@@ -44,6 +44,8 @@ const signupControler = async (req, res) => {
     const newuser = await User.create(userdetails);
     await newuser.save();
     const token = genratToken(newuser._id);
+    console.log(token);
+    console.log(newuser._id);
     return res.status(200).json({
       token: token,
       messsage: "User created is successfully",

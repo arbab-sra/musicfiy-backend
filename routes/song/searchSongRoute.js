@@ -4,7 +4,7 @@ import { songBySearchingControllar } from "../../controlers/song/index.js";
 const router = express.Router();
 const songbysearchRoute = router.get(
   "/songs/allsongsearch",
-  verifyToken,
+  // verifyToken,
   songBySearchingControllar
 );
 export default songbysearchRoute;

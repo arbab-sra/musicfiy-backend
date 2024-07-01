@@ -46,8 +46,8 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-// app.use(cors(corsOptions));
-app.use(cors({ origin: "*" }));
+app.use(cors(corsOptions));
+// app.use(cors({ origin: "*" }));
 app.get("/", (req, res) => {
   return res.send("hello world");
 });

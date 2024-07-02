@@ -59,7 +59,6 @@ app.use("/api", updateprofileRoute);
 app.use("/api", logoutRoute);
 //cors
 
-// app.use(cors( { origin: "http://localhost:5173" } ));
 
 //all admin routes
 app.use("/api", create_songRoute);

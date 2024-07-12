@@ -14,7 +14,7 @@ import {
 } from "./routes/user/index.js";
 import connectdb from "./utils/connectdb.js";
 import cookieParser from "cookie-parser";
-import { create_songRoute } from "./routes/admin/song/index.js";
+import { create_songRoute ,videosongRoute } from "./routes/admin/song/index.js";
 import {
   all_songsControlar,
   mood_playlistRoute,
@@ -25,6 +25,7 @@ import {
   top_albumRoute,
   top_artiestsRoute,
   weekly_top_songsRoute,
+  video_songRoute
 } from "./routes/song/index.js";
 import tranding_songsRoute from "./routes/song/trandingRoute.js";
 
@@ -40,7 +41,7 @@ connectdb();
 const port = process.env.PORT || 8080;
 // all routes
 const corsOptions = {
-  origin: process.env.FRONTEND_URL ||'http://localhost:5173', // your frontend URL
+  origin: process.env.FRONTEND_URL ,// your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
@@ -62,6 +63,8 @@ app.use("/api", logoutRoute);
 
 //all admin routes
 app.use("/api", create_songRoute);
+app.use("/api", videosongRoute);
+
 
 // songs route
 app.use("/api", all_songsControlar);
@@ -74,6 +77,8 @@ app.use("/api", tranding_songsRoute);
 app.use("/api", weekly_top_songsRoute);
 app.use("/api", songbysearchRoute);
 app.use("/api", singlesongRoute);
+app.use("/api", video_songRoute);
+
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`.gray.america);

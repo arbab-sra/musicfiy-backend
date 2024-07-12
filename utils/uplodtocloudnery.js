@@ -26,7 +26,6 @@ export const uploadToCloudinary = async (filename, folderName,contanttyp ="auto"
           console.log(error.message);
         } else {
           // Delete the file from the server after uploading to Cloudinary
-
           deleteFile(filePath);
           console.log("profilepicture uploaded successfully");
         }

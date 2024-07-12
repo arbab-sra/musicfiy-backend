@@ -8,3 +8,4 @@ export { default as top_albumControllar } from "./top_album.js";
 export { default as top_artiestsControllar } from "./top_artiest.js";
 export { default as tranding_songs } from "./tranding_song.js";
 export { default as weekly_top_songs } from "./weekly_top_song.js";
+export { default as  video_song} from "./video_song.js";

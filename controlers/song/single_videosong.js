@@ -1,10 +1,10 @@
-import { Song } from "../../models/song/songmodle.js";
-const singlesongControllar = async (req, res) => {
+import VideoSong from "../../models/videosong/videosong.js";
+const single_videosong = async (req, res) => {
   const { id } = req.query;
   if (!id) return res.send("id is required");
 
   try {
-    const result = await Song.findByIdAndUpdate(
+    const result = await VideoSong.findByIdAndUpdate(
       { _id: id },
       { $inc: { views: 1 } },
       { new: true }
@@ -18,4 +18,4 @@ const singlesongControllar = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
-export default singlesongControllar;
+export default single_videosong;

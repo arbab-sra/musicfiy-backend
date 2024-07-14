@@ -8,4 +8,5 @@ export { default as tranding_songs } from "./trandingRoute.js";
 export { default as weekly_top_songsRoute } from "./weeklyTopSong.js";
 export { default as songbysearchRoute } from "./searchSongRoute.js";
 export { default as singlesongRoute } from "./singleSongRoute.js";
+export { default as single_videosongRoute } from "./singlevideosongRoute.js";
 export { default as video_songRoute } from "./videosongRoute.js";

@@ -25,7 +25,8 @@ import {
   top_albumRoute,
   top_artiestsRoute,
   weekly_top_songsRoute,
-  video_songRoute
+  video_songRoute,
+ single_videosongRoute
 } from "./routes/song/index.js";
 import tranding_songsRoute from "./routes/song/trandingRoute.js";
 
@@ -77,6 +78,7 @@ app.use("/api", tranding_songsRoute);
 app.use("/api", weekly_top_songsRoute);
 app.use("/api", songbysearchRoute);
 app.use("/api", singlesongRoute);
+app.use("/api", single_videosongRoute);
 app.use("/api", video_songRoute);
 
 

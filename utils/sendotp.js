@@ -1,4 +1,7 @@
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
 export async function sendMail(to, otp) {
   const subject = "Your OTP Code for Secure Access";
   const text = `Your OTP Code for Secure Access

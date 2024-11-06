@@ -13,7 +13,7 @@ const songBySearchingControllar = async (req, res) => {
     // Use Mongoose to find songs where title or description matches the query
     const searchResults = await Song.find({
       $or: [
-        { title: { $regex: query, $options: "i" } },
+        { title: { $regex: query, $options: "i" } },//
         { description: { $regex: query, $options: "i" } },
         { mood: { $regex: query, $options: "i" } },
         {

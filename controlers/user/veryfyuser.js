@@ -17,7 +17,7 @@ const veryfyuser = async (req, res) => {
       });
     }
 
-    if (user.otp == otp && user.otpExpiresAt > Date.now()) {
+    if (user.otp === otp && user.otpExpiresAt > Date.now()) {
       user.verified = true;
       await user.save();
       const token = genratToken(user._id);

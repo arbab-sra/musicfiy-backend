@@ -17,7 +17,7 @@ const signupControler = async (req, res) => {
     });
   }
   try {
-    const userisExist = await User.findOne({ email:email });
+    const userisExist = await User.findOne({ email: email });
     console.log(userisExist);
     if (userisExist) {
       return res.status(403).json({
@@ -66,6 +66,7 @@ const signupControler = async (req, res) => {
     if (req.files.avatar) {
       deleteFile(req.files.avatar[0].path);
     }
+
     return res.status(500).json({ messsage: error.messsage });
   }
 };

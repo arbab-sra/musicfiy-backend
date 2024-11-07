@@ -10,15 +10,15 @@ const veryfyuser = async (req, res) => {
   }
   try {
     const user = await User.findOne({ email });
-
+    
     if (!user) {
       return res.status(404).json({
         message: "user not found",
       });
     }
-
-    if (user.otp === otp && user.otpExpiresAt > Date.now()) {
+    if (otp == user.otp && user.otpExpiresAt > Date.now()) {
       user.verified = true;
+      console.log("object");
       await user.save();
       const token = genratToken(user._id);
       return res.status(200).json({

@@ -1,16 +1,22 @@
 import cloud from "cloudinary";
+import dotenv from "dotenv";
+dotenv.config();
 import path from "path";
 import fs from "fs";
 import { deleteFile } from "./deletefiles.js";
 const cloudinary = cloud.v2;
 
 cloudinary.config({
-  cloud_name: "duns099gs",
-  api_key: "397724318357157",
-  api_secret: "78iP7_cKi-kiojXifdv0XfK_wF8",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
 
-export const uploadToCloudinary = async (filename, folderName,contanttyp ="auto") => {
+export const uploadToCloudinary = async (
+  filename,
+  folderName,
+  contanttyp = "auto"
+) => {
   // console.log("resive image pathe",filename);
   try {
     const filePath = path.resolve("../public", filename);
@@ -20,6 +26,7 @@ export const uploadToCloudinary = async (filename, folderName,contanttyp ="auto"
       {
         resource_type: contanttyp, // For audio files
         folder: folderName,
+        effect: "upscale",
       },
       (error) => {
         if (error) {

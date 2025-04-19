@@ -38,7 +38,7 @@ const signupControler = async (req, res) => {
     email,
     password: incriptedpassword,
     otp,
-    otpExpiresAt: Date.now() + 10 * 60 * 1000,
+    otpExpiresAt: Date.now() + 10 * 60 * 1000,//
   };
 
   // console.log(imgurlfromclint);

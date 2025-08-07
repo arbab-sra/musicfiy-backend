@@ -42,8 +42,17 @@ app.use(cookieParser());
 connectdb();
 const port = process.env.PORT || 8080;
 // all routes
+const furl = process.env.FRONTEND_URL
+const allowedOrigins = ['http://example.com', 'https://another-domain.com'];
+allowedOrigins.push(furl)
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, // your frontend URL
+  origin: function (origin, callback) {
+            if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },, // your frontend URL
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -84,3 +93,4 @@ app.use("/api", video_songRoute);
 app.listen(port, () => {
   console.log(`server is running on port ${port}`.gray.america);
 });
+

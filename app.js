@@ -52,7 +52,7 @@ const corsOptions = {
             } else {
                 callback(new Error('Not allowed by CORS'));
             }
-        },, // your frontend URL
+        }, // your frontend URL
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -93,4 +93,5 @@ app.use("/api", video_songRoute);
 app.listen(port, () => {
   console.log(`server is running on port ${port}`.gray.america);
 });
+
 

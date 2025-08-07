@@ -43,7 +43,7 @@ connectdb();
 const port = process.env.PORT || 8080;
 // all routes
 const furl = process.env.FRONTEND_URL
-const allowedOrigins = ['http://example.com', 'https://another-domain.com'];
+const allowedOrigins = ['http://www.arbab.fun'];
 allowedOrigins.push(furl)
 const corsOptions = {
   origin: function (origin, callback) {
@@ -93,5 +93,6 @@ app.use("/api", video_songRoute);
 app.listen(port, () => {
   console.log(`server is running on port ${port}`.gray.america);
 });
+
 
 
